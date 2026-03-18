@@ -14,4 +14,5 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.Label lblRevenue;
     protected global::System.Web.UI.WebControls.Label lblAvgOccupancy;
     protected global::System.Web.UI.WebControls.GridView gvRecent;
+    protected global::System.Web.UI.WebControls.Label lblMsg;
 }

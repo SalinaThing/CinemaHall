@@ -9,7 +9,15 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack) LoadDashboard();
+        try 
+        {
+            if (!IsPostBack) LoadDashboard();
+        }
+        catch (Exception ex)
+        {
+            lblMsg.Text = "<b>Runtime Error:</b> " + ex.Message + "<br/><small>" + ex.StackTrace.Substring(0, Math.Min(ex.StackTrace.Length, 200)) + "...</small>";
+            lblMsg.Visible = true;
+        }
     }
 
     void LoadDashboard()
