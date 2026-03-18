@@ -80,14 +80,22 @@ public partial class Forms_Basic_ShowForm : System.Web.UI.Page
         {
             try
             {
-                // Delete from junction tables first
-                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE ShowId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE ShowId=:id", new[] { new OracleParameter("id", id) });
+                // Delete Tickets linked to this show
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKET WHERE TicketId IN (SELECT TicketId FROM TICKETSHOW WHERE ShowId=:id)", 
+                    new[] { new OracleParameter("id", id) });
+
+                // Delete from junction tables
+                string[] junctionTables = { "TICKETSHOW", "SHOWHALL" };
+                foreach (var table in junctionTables)
+                {
+                    DBHelper.ExecuteNonQuery($"DELETE FROM {table} WHERE ShowId=:id", 
+                        new[] { new OracleParameter("id", id) });
+                }
 
                 // Finally delete show
                 DBHelper.ExecuteNonQuery("DELETE FROM SHOW_TABLE WHERE ShowId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("Show and related records deleted."); LoadGrid();
+                ShowMsg("Show and all associated records deleted."); LoadGrid();
             }
             catch (Exception ex) { ShowMsg("Error deleting show: " + ex.Message, true); }
         }

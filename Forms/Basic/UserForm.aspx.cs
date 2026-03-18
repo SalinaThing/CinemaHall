@@ -78,27 +78,32 @@ public partial class Forms_Basic_UserForm : System.Web.UI.Page
                 hfUserId.Value = id.ToString();
                 txtUsername.Text = dt.Rows[0]["Username"].ToString();
                 txtEmail.Text = dt.Rows[0]["UserEmail"].ToString();
-                txtPassword.Text = dt.Rows[0]["Password"].ToString();
+                txtPassword.Attributes.Add("value", dt.Rows[0]["Password"].ToString());
                 txtAddress.Text = dt.Rows[0]["Address"].ToString();
-                lblFormTitle.Text = "Edit User";
+                lblFormTitle.Text = "Edit User Settings";
             }
         }
         else if (e.CommandName == "DeleteRow")
         {
             try
             {
-                // Delete from junction tables first
-                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE UserId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM MOVIEUSER WHERE UserId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM THEATERMOVIEMAP WHERE UserId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM HALLTHEATER WHERE UserId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE UserId=:id", new[] { new OracleParameter("id", id) });
+                // Delete User's Tickets first (Identify via TICKETSHOW)
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKET WHERE TicketId IN (SELECT TicketId FROM TICKETSHOW WHERE UserId=:id)", 
+                    new[] { new OracleParameter("id", id) });
                 
-                // Finally delete user
+                // Then clean all junction table rows
+                string[] junctionTables = { "TICKETSHOW", "SHOWHALL", "HALLTHEATER", "THEATERMOVIEMAP", "MOVIEUSER" };
+                foreach (var table in junctionTables)
+                {
+                    DBHelper.ExecuteNonQuery($"DELETE FROM {table} WHERE UserId=:id", 
+                        new[] { new OracleParameter("id", id) });
+                }
+                
+                // Finally delete the user account
                 DBHelper.ExecuteNonQuery("DELETE FROM USERS WHERE UserId=:id",
                     new[] { new OracleParameter("id", id) });
                     
-                ShowMsg("User and related records deleted.");
+                ShowMsg("User and all associated records deleted.");
                 LoadGrid();
             }
             catch (Exception ex) { ShowMsg("Error deleting user: " + ex.Message, true); }

@@ -11,7 +11,18 @@ public partial class _Default : System.Web.UI.Page
     {
         try 
         {
-            if (!IsPostBack) LoadDashboard();
+            if (!IsPostBack) 
+            {
+                // Sync all sequences to avoid ORA-00001 after manual imports
+                DBHelper.SyncSequence("USERS", "UserId", "SEQ_USER");
+                DBHelper.SyncSequence("MOVIE", "MovieId", "SEQ_MOVIE");
+                DBHelper.SyncSequence("THEATER", "TheaterId", "SEQ_THEATER");
+                DBHelper.SyncSequence("HALL", "HallId", "SEQ_HALL");
+                DBHelper.SyncSequence("SHOW_TABLE", "ShowId", "SEQ_SHOW");
+                DBHelper.SyncSequence("TICKET", "TicketId", "SEQ_TICKET");
+                
+                LoadDashboard();
+            }
         }
         catch (Exception ex)
         {

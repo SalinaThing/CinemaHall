@@ -84,4 +84,19 @@ public class DBHelper
         object res = ExecuteScalar(sql, parameters);
         return res != null ? res.ToString() : "0";
     }
+
+    public static void SyncSequence(string tableName, string pkColumn, string sequenceName)
+    {
+        try
+        {
+            string maxSql = $"SELECT MAX({pkColumn}) FROM {tableName}";
+            object res = ExecuteScalar(maxSql);
+            long maxVal = (res == DBNull.Value || res == null) ? 0 : Convert.ToInt64(res);
+            
+            // Drop and recreate sequence to sync
+            ExecuteNonQuery($"DROP SEQUENCE {sequenceName}");
+            ExecuteNonQuery($"CREATE SEQUENCE {sequenceName} START WITH {maxVal + 1} INCREMENT BY 1");
+        }
+        catch { /* Ignore if sequence drop fails */ }
+    }
 }

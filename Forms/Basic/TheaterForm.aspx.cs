@@ -75,16 +75,22 @@ public partial class Forms_Basic_TheaterForm : System.Web.UI.Page
         {
             try
             {
-                // Delete from junction tables first
-                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM THEATERMOVIEMAP WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM HALLTHEATER WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
-                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
+                // Delete Tickets linked to this theater
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKET WHERE TicketId IN (SELECT TicketId FROM TICKETSHOW WHERE TheaterId=:id)", 
+                    new[] { new OracleParameter("id", id) });
+
+                // Delete from junction tables
+                string[] junctionTables = { "TICKETSHOW", "THEATERMOVIEMAP", "HALLTHEATER", "SHOWHALL" };
+                foreach (var table in junctionTables)
+                {
+                    DBHelper.ExecuteNonQuery($"DELETE FROM {table} WHERE TheaterId=:id", 
+                        new[] { new OracleParameter("id", id) });
+                }
 
                 // Finally delete theater
                 DBHelper.ExecuteNonQuery("DELETE FROM THEATER WHERE TheaterId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("Theater and related records deleted."); LoadGrid();
+                ShowMsg("Theater and all associated records deleted."); LoadGrid();
             }
             catch (Exception ex) { ShowMsg("Error deleting theater: " + ex.Message, true); }
         }
