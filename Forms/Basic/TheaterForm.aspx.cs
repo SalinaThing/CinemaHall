@@ -75,11 +75,18 @@ public partial class Forms_Basic_TheaterForm : System.Web.UI.Page
         {
             try
             {
+                // Delete from junction tables first
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM THEATERMOVIEMAP WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM HALLTHEATER WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE TheaterId=:id", new[] { new OracleParameter("id", id) });
+
+                // Finally delete theater
                 DBHelper.ExecuteNonQuery("DELETE FROM THEATER WHERE TheaterId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("Theater deleted."); LoadGrid();
+                ShowMsg("Theater and related records deleted."); LoadGrid();
             }
-            catch (Exception ex) { ShowMsg("Cannot delete: " + ex.Message, true); }
+            catch (Exception ex) { ShowMsg("Error deleting theater: " + ex.Message, true); }
         }
     }
 }

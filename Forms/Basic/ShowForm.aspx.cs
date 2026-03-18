@@ -80,11 +80,16 @@ public partial class Forms_Basic_ShowForm : System.Web.UI.Page
         {
             try
             {
+                // Delete from junction tables first
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE ShowId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE ShowId=:id", new[] { new OracleParameter("id", id) });
+
+                // Finally delete show
                 DBHelper.ExecuteNonQuery("DELETE FROM SHOW_TABLE WHERE ShowId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("Show deleted."); LoadGrid();
+                ShowMsg("Show and related records deleted."); LoadGrid();
             }
-            catch (Exception ex) { ShowMsg("Cannot delete: " + ex.Message, true); }
+            catch (Exception ex) { ShowMsg("Error deleting show: " + ex.Message, true); }
         }
     }
 }

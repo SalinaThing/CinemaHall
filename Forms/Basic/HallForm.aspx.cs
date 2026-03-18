@@ -79,11 +79,17 @@ public partial class Forms_Basic_HallForm : System.Web.UI.Page
         {
             try
             {
+                // Delete from junction tables first
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE HallId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM HALLTHEATER WHERE HallId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE HallId=:id", new[] { new OracleParameter("id", id) });
+
+                // Finally delete hall
                 DBHelper.ExecuteNonQuery("DELETE FROM HALL WHERE HallId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("Hall deleted."); LoadGrid();
+                ShowMsg("Hall and related records deleted."); LoadGrid();
             }
-            catch (Exception ex) { ShowMsg("Cannot delete: " + ex.Message, true); }
+            catch (Exception ex) { ShowMsg("Error deleting hall: " + ex.Message, true); }
         }
     }
 }

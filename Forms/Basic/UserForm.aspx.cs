@@ -87,12 +87,21 @@ public partial class Forms_Basic_UserForm : System.Web.UI.Page
         {
             try
             {
+                // Delete from junction tables first
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE UserId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM MOVIEUSER WHERE UserId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM THEATERMOVIEMAP WHERE UserId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM HALLTHEATER WHERE UserId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE UserId=:id", new[] { new OracleParameter("id", id) });
+                
+                // Finally delete user
                 DBHelper.ExecuteNonQuery("DELETE FROM USERS WHERE UserId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("User deleted.");
+                    
+                ShowMsg("User and related records deleted.");
                 LoadGrid();
             }
-            catch (Exception ex) { ShowMsg("Cannot delete (has related records): " + ex.Message, true); }
+            catch (Exception ex) { ShowMsg("Error deleting user: " + ex.Message, true); }
         }
     }
 }

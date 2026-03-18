@@ -94,11 +94,19 @@ public partial class Forms_Basic_MovieForm : System.Web.UI.Page
         {
             try
             {
+                // Delete from junction tables first
+                DBHelper.ExecuteNonQuery("DELETE FROM TICKETSHOW WHERE MovieId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM MOVIEUSER WHERE MovieId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM THEATERMOVIEMAP WHERE MovieId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM HALLTHEATER WHERE MovieId=:id", new[] { new OracleParameter("id", id) });
+                DBHelper.ExecuteNonQuery("DELETE FROM SHOWHALL WHERE MovieId=:id", new[] { new OracleParameter("id", id) });
+
+                // Finally delete movie
                 DBHelper.ExecuteNonQuery("DELETE FROM MOVIE WHERE MovieId=:id",
                     new[] { new OracleParameter("id", id) });
-                ShowMsg("Movie deleted."); LoadGrid();
+                ShowMsg("Movie and related records deleted."); LoadGrid();
             }
-            catch (Exception ex) { ShowMsg("Cannot delete: " + ex.Message, true); }
+            catch (Exception ex) { ShowMsg("Error deleting movie: " + ex.Message, true); }
         }
     }
 }
