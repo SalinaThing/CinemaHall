@@ -79,7 +79,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected string GetOccupancyLabels()
     {
-        DataTable dt = DBHelper.ExecuteQuery("SELECT TheaterName FROM THEATER FETCH FIRST 5 ROWS ONLY");
+        DataTable dt = DBHelper.ExecuteQuery("SELECT TheaterName FROM (SELECT TheaterName FROM THEATER) WHERE ROWNUM <= 5");
         var labels = new List<string>();
         foreach (DataRow r in dt.Rows) labels.Add(r["TheaterName"].ToString());
         return new JavaScriptSerializer().Serialize(labels);
@@ -88,12 +88,13 @@ public partial class _Default : System.Web.UI.Page
     protected string GetOccupancyData()
     {
         DataTable dt = DBHelper.ExecuteQuery(@"
-            SELECT th.TheaterName, COUNT(t.TicketId) as Sales
-            FROM THEATER th
-            LEFT JOIN TICKETSHOW ts ON th.TheaterId = ts.TheaterId
-            LEFT JOIN TICKET t ON ts.TicketId = t.TicketId AND t.PaymentStatus = 'Completed'
-            GROUP BY th.TheaterName
-            FETCH FIRST 5 ROWS ONLY");
+            SELECT * FROM (
+                SELECT th.TheaterName, COUNT(t.TicketId) as Sales
+                FROM THEATER th
+                LEFT JOIN TICKETSHOW ts ON th.TheaterId = ts.TheaterId
+                LEFT JOIN TICKET t ON ts.TicketId = t.TicketId AND t.PaymentStatus = 'Completed'
+                GROUP BY th.TheaterName
+            ) WHERE ROWNUM <= 5");
         var data = new List<int>();
         foreach (DataRow r in dt.Rows) data.Add(Convert.ToInt32(r["Sales"]));
         return new JavaScriptSerializer().Serialize(data);
