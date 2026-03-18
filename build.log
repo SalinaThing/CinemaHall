@@ -1,0 +1,30 @@
+Build started 3/18/2026 2:43:06 PM.
+Logging verbosity is set to: Detailed.Process = "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
+MSBuild executable path = "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
+Command line arguments = ""C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" KumariCinema.csproj /t:Build /p:Configuration=Debug /p:Platform=AnyCPU /fl /flp:logfile=build.log"
+Current directory = "C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema"
+MSBuild version = "17.14.40+3e7442088"
+Based on the Windows registry key LongPathsEnabled, the LongPaths feature is disabled.
+Based on the Windows registry key VerifiedAndReputablePolicyState, SAC state = 0: turned off.
+Some command line switches were read from the auto-response file "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.rsp". To disable this file, use the "-noAutoResponse" switch.
+
+Property reassignment: $(MSBuildExtensionsPath)="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild" (previous value: "C:\Program Files (x86)\MSBuild") at 
+Property reassignment: $(MSBuildExtensionsPath32)="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild" (previous value: "C:\Program Files (x86)\MSBuild") at 
+Search paths being used for $(MSBuildExtensionsPath32) are C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild;$(MSBuildProgramFiles32)\MSBuild
+The "Configuration" property is a global property, and cannot be modified.
+The "Platform" property is a global property, and cannot be modified.
+Project "C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\KumariCinema.csproj" on node 1 (Build target(s)).
+Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="Current". For more information, please see http://go.microsoft.com/fwlink/?LinkId=293424.
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\KumariCinema.csproj : error MSB4057: The target "Build" does not exist in the project.
+Done Building Project "C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\KumariCinema.csproj" (Build target(s)) -- FAILED.
+
+
+Build FAILED.
+
+"C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\KumariCinema.csproj" (Build target) (1) ->
+  C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\KumariCinema.csproj : error MSB4057: The target "Build" does not exist in the project.
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.04

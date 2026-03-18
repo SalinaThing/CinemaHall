@@ -1,0 +1,9 @@
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\bin\KumariCinema.dll.config
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\bin\KumariCinema.dll
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\bin\KumariCinema.pdb
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\bin\Oracle.ManagedDataAccess.dll
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\obj\Debug\KumariCinema.csproj.AssemblyReference.cache
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\obj\Debug\KumariCinema.csproj.CoreCompileInputs.cache
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\obj\Debug\KumariCi.70C4FF5E.Up2Date
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\obj\Debug\KumariCinema.dll
+C:\Users\salin\Downloads\KumariCinemaHall\KumariCinema\obj\Debug\KumariCinema.pdb

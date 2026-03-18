@@ -1,0 +1,86 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KumariCinema Hall - <%: Page.Title %></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root { --primary-red: #e63946; --dark-red: #b91c1c; --white: #ffffff; --light-bg: #fdfdfd; }
+        body { background-color: var(--light-bg); font-family: 'Inter', 'Segoe UI', sans-serif; }
+        .navbar { background-color: #ffffff !important; border-bottom: 2px solid var(--primary-red); box-shadow: 0 4px 12px rgba(230, 57, 70, 0.08); }
+        .card-title { margin-bottom: 0; }
+    .table thead th { background-color: #e63946 !important; color: white !important; border: none; padding: 10px; }
+    .table-hover tbody tr:hover { background-color: rgba(230, 57, 70, 0.05); }
+        .navbar-brand { color: var(--primary-red) !important; font-weight: 800; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 1px; }
+        .navbar-text { color: #444 !important; font-weight: 500; }
+        
+        .sidebar { min-height: calc(100vh - 65px); background: #ffffff; border-right: 1px solid #eee; padding-top: 25px; box-shadow: 2px 0 10px rgba(0,0,0,0.02); }
+        .sidebar a { color: #555; display: block; padding: 14px 24px; text-decoration: none; border-radius: 0; border-left: 4px solid transparent; transition: all 0.2s ease; font-weight: 500; }
+        .sidebar a:hover, .sidebar a.active { background: #fff5f5; color: var(--primary-red); border-left: 4px solid var(--primary-red); }
+        .sidebar .section-title { color: #bbb; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; padding: 20px 24px 8px; font-weight: 700; }
+        
+        .main-content { padding: 40px; background: #fafafa; }
+        .page-header { border-bottom: 3px solid var(--primary-red); margin-bottom: 35px; padding-bottom: 15px; color: #222; }
+        .page-header h3 { font-weight: 700; }
+        
+        .card { border: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); border-radius: 12px; margin-bottom: 25px; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); }
+        .card-header { background: #ffffff !important; border-bottom: 1px solid #f0f0f0 !important; color: var(--primary-red) !important; font-weight: 700; padding: 18px 24px; font-size: 1.1rem; }
+        
+        .btn-danger, .btn-primary { background-color: var(--primary-red) !important; border-color: var(--primary-red) !important; font-weight: 600; padding: 10px 20px; border-radius: 8px; }
+        .btn-danger:hover, .btn-primary:hover { background-color: var(--dark-red) !important; }
+        .btn-outline-danger { color: var(--primary-red); border-color: var(--primary-red); border-radius: 8px; font-weight: 600; }
+        .btn-outline-danger:hover { background-color: var(--primary-red); color: white; }
+        
+        .table th { background-color: #fcfcfc !important; color: #444 !important; border-bottom: 2px solid var(--primary-red) !important; font-weight: 700; padding: 15px; }
+        .table td { padding: 15px; vertical-align: middle; border-bottom: 1px solid #f0f0f0; }
+        .btn-action { margin: 2px; border-radius: 6px; padding: 5px 12px; font-size: 0.85rem; }
+        
+        /* Dashboard Stats */
+        .stat-card { text-align: center; border-left: 5px solid var(--primary-red); }
+        .stat-value { font-size: 2rem; font-weight: 800; color: #222; }
+        .stat-label { color: #777; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
+    </style>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+<form id="masterForm" runat="server">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href='<%= ResolveUrl("~/Default.aspx") %>'>
+                <i class="bi bi-film"></i> KUMARI CINEMA
+            </a>
+            <span class="navbar-text d-none d-sm-inline">
+                <i class="bi bi-person-circle me-1"></i> ADMIN DASHBOARD
+            </span>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar d-none d-md-block px-0">
+                <div class="section-title">Management</div>
+                <a href='<%= ResolveUrl("~/Default.aspx") %>'><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+                <a href='<%= ResolveUrl("~/Forms/Basic/UserForm.aspx") %>'><i class="bi bi-people me-2"></i> Users</a>
+                <a href='<%= ResolveUrl("~/Forms/Basic/TheaterForm.aspx") %>'><i class="bi bi-building me-2"></i> Theater</a>
+                <a href='<%= ResolveUrl("~/Forms/Basic/HallForm.aspx") %>'><i class="bi bi-grid-3x3-gap me-2"></i> Hall</a>
+                <a href='<%= ResolveUrl("~/Forms/Basic/MovieForm.aspx") %>'><i class="bi bi-play-circle me-2"></i> Movie</a>
+                <a href='<%= ResolveUrl("~/Forms/Basic/ShowForm.aspx") %>'><i class="bi bi-calendar-event me-2"></i> Show</a>
+                <a href='<%= ResolveUrl("~/Forms/Basic/TicketForm.aspx") %>'><i class="bi bi-ticket-perforated me-2"></i> Ticket</a>
+                <div class="section-title mt-4">Analytics</div>
+                <a href='<%= ResolveUrl("~/Forms/Complex/UserTicketForm.aspx") %>'><i class="bi bi-file-earmark-person me-2"></i> User History</a>
+                <a href='<%= ResolveUrl("~/Forms/Complex/TheaterMovieForm.aspx") %>'><i class="bi bi-view-list me-2"></i> Show Map</a>
+                <a href='<%= ResolveUrl("~/Forms/Complex/OccupancyForm.aspx") %>'><i class="bi bi-pie-chart me-2"></i> Occupancy</a>
+            </div>
+            <div class="col-md-10 main-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
