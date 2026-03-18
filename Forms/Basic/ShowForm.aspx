@@ -56,8 +56,8 @@
         <asp:BoundField DataField="ShowStatus" HeaderText="Status" />
         <asp:TemplateField HeaderText="Actions">
           <ItemTemplate>
-            <asp:LinkButton runat="server" CommandName="EditRow" CommandArgument='<%# Eval("ShowId") %>' CssClass="btn btn-sm btn-warning btn-action"><i class="bi bi-pencil"></i> Edit</asp:LinkButton>
-            <asp:LinkButton runat="server" CommandName="DeleteRow" CommandArgument='<%# Eval("ShowId") %>' CssClass="btn btn-sm btn-danger btn-action" OnClientClick="return confirm('Delete?')"><i class="bi bi-trash"></i> Delete</asp:LinkButton>
+            <asp:LinkButton runat="server" CommandName="EditRow" CommandArgument='<%# Eval("ShowId") %>' CssClass="btn btn-sm btn-warning btn-action" CausesValidation="false"><i class="bi bi-pencil"></i> Edit</asp:LinkButton>
+            <asp:LinkButton runat="server" CommandName="DeleteRow" CommandArgument='<%# Eval("ShowId") %>' CssClass="btn btn-sm btn-danger btn-action" CausesValidation="false" OnClientClick="return confirm('Delete?')"><i class="bi bi-trash"></i> Delete</asp:LinkButton>
           </ItemTemplate>
         </asp:TemplateField>
       </Columns>
