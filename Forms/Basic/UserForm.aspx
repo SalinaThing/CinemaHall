@@ -1,4 +1,4 @@
-<%@ Page Title="User Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="UserForm.aspx.cs" Inherits="Forms_Basic_UserForm" %>
+<%@ Page Title="User Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="UserForm.aspx.cs" Inherits="Forms_Basic_UserForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-people"></i> User Management</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-info d-block mb-3" Visible="false" />

@@ -1,4 +1,4 @@
-<%@ Page Title="Hall Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="HallForm.aspx.cs" Inherits="Forms_Basic_HallForm" %>
+<%@ Page Title="Hall Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="HallForm.aspx.cs" Inherits="Forms_Basic_HallForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-grid"></i> Hall Management</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-info d-block mb-3" Visible="false" />

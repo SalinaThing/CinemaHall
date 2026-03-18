@@ -1,4 +1,4 @@
-<%@ Page Title="Theater Movie Details" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TheaterMovieForm.aspx.cs" Inherits="Forms_Complex_TheaterMovieForm" %>
+<%@ Page Title="Theater Movie Details" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="TheaterMovieForm.aspx.cs" Inherits="Forms_Complex_TheaterMovieForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-camera-video"></i> Theater City Hall - Movie & Showtime Details</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-danger d-block mb-3" Visible="false" />

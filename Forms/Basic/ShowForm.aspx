@@ -1,4 +1,4 @@
-<%@ Page Title="Show Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="ShowForm.aspx.cs" Inherits="Forms_Basic_ShowForm" %>
+<%@ Page Title="Show Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="ShowForm.aspx.cs" Inherits="Forms_Basic_ShowForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-calendar3"></i> Show (Showtimes) Management</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-info d-block mb-3" Visible="false" />

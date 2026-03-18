@@ -1,4 +1,4 @@
-<%@ Page Title="Theater Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TheaterForm.aspx.cs" Inherits="Forms_Basic_TheaterForm" %>
+<%@ Page Title="Theater Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="TheaterForm.aspx.cs" Inherits="Forms_Basic_TheaterForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-building"></i> Theater (TheaterCityHall) Management</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-info d-block mb-3" Visible="false" />

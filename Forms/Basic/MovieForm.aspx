@@ -1,4 +1,4 @@
-<%@ Page Title="Movie Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MovieForm.aspx.cs" Inherits="Forms_Basic_MovieForm" %>
+<%@ Page Title="Movie Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="MovieForm.aspx.cs" Inherits="Forms_Basic_MovieForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-film"></i> Movie Management</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-info d-block mb-3" Visible="false" />

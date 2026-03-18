@@ -1,5 +1,5 @@
 <%@ Page Title="Movie Theater Occupancy" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-  CodeFile="OccupancyForm.aspx.cs" Inherits="Forms_Complex_OccupancyForm" %>
+  CodeBehind="OccupancyForm.aspx.cs" Inherits="Forms_Complex_OccupancyForm" %>
   <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="page-header">
       <h3><i class="bi bi-bar-chart"></i> Movie Theater Occupancy Performer (Top 3)</h3>

@@ -1,4 +1,4 @@
-<%@ Page Title="Ticket Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="TicketForm.aspx.cs" Inherits="Forms_Basic_TicketForm" %>
+<%@ Page Title="Ticket Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="TicketForm.aspx.cs" Inherits="Forms_Basic_TicketForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="page-header"><h3><i class="bi bi-ticket-perforated"></i> Ticket Management</h3></div>
 <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-info d-block mb-3" Visible="false" />
