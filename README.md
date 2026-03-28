@@ -1,13 +1,11 @@
 # KumariCinema Hall - ASP.NET Web Application
-## CC6012NI Data and Web Development - Milestone 2
-
----
+## CC6012NI Data and Web Development 
 
 ## SETUP INSTRUCTIONS
 
 ### Step 1: Oracle Database Setup
 1. Open Oracle SQL Developer (24.3.1)
-2. Connect: User=Salina, Password=23047540, Host=localhost, Port=1521, SID=XEPDB1
+2. Connect: User=<username>, Password=<Password>, Host=localhost, Port=1521, SID=XEPDB1
 3. Open and run: KumariCinema\SQL_Setup.sql  (Run entire script at once)
 4. Verify tables are created and sample data inserted
 
@@ -31,12 +29,6 @@ If connection fails, check your Oracle service name in SQL Developer connection:
 1. Build solution: Ctrl+Shift+B
 2. Run: F5
 3. Login page will appear
-
-### Step 5: Login
-Use any user from the USERS table (inserted by SQL_Setup.sql):
-  Username: Pratibha Gurung   Password: pass123
-  Username: Ram Shrestha      Password: pass123
-
 ---
 
 ## TROUBLESHOOTING
@@ -52,12 +44,6 @@ Problem: ORA-12541 or connection refused
 Fix: Make sure Oracle Database XE service is running.
      Open Windows Services > find OracleServiceXE > Start
 
-Problem: ORA-01017 invalid username/password
-Fix: Check Salina user exists in Oracle.
-     In SQL Developer as SYSTEM: CREATE USER Salina IDENTIFIED BY 23047540;
-     GRANT CONNECT, RESOURCE, DBA TO Salina;
-
----
 
 ## PROJECT STRUCTURE
 
@@ -77,8 +63,6 @@ KumariCinema/
 |       +-- TheaterMovieForm.aspx(.cs) <- Theater movies & showtimes
 |       +-- OccupancyForm.aspx(.cs)    <- Top 3 occupancy by movie (paid only)
 +-- Default.aspx(.cs)            <- Dashboard with counts + recent tickets
-+-- Login.aspx(.cs)
-+-- Logout.aspx(.cs)
 +-- Site.master(.cs)             <- Master page (navbar + sidebar)
 +-- Web.config                   <- Connection string config
 +-- packages.config              <- NuGet packages list
